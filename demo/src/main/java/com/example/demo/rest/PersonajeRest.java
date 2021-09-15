@@ -1,6 +1,7 @@
 package com.example.demo.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +28,7 @@ public class PersonajeRest {
 		return personajeDAO.findAll();
 	}
 	
-	@PostMapping(path = "/guardar")
+	@PostMapping(path = "/create")
 	public void guardar(@RequestBody Personaje personaje) {
 		personajeDAO.save(personaje);
 	}
@@ -37,13 +38,18 @@ public class PersonajeRest {
 		return personajeDAO.findAll();
 	}
 	
-	@DeleteMapping(path = "/eliminar/{id}")
-	public void eliminar(@PathVariable("id") Integer id) {
+	@GetMapping(path = "/read/{id}")
+	public Optional<Personaje> read(@PathVariable("id") Integer id){
+		return personajeDAO.findById(id);
+	}
+	
+	@DeleteMapping(path = "/delete/{id}")
+	public void delete(@PathVariable("id") Integer id) {
 		personajeDAO.deleteById(id);
 	}
 	
-	@PutMapping(path = "/actualizar")
-	public void actualizar(@RequestBody Personaje personaje) {
+	@PutMapping(path = "/update")
+	public void update(@RequestBody Personaje personaje) {
 		personajeDAO.save(personaje);
 	}
 
