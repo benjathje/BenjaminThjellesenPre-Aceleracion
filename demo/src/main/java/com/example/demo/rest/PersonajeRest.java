@@ -33,11 +33,6 @@ public class PersonajeRest {
 		personajeDAO.save(personaje);
 	}
 	
-	@GetMapping(path = "/listartodo")
-	public List<Personaje> listartodo(){
-		return personajeDAO.findAll();
-	}
-	
 	@GetMapping(path = "/read/{id}")
 	public Optional<Personaje> read(@PathVariable("id") Integer id){
 		return personajeDAO.findById(id);
